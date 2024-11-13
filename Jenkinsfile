@@ -20,6 +20,14 @@ pipeline {
                 terraform plan -var 'node1=frontend' -var 'node2=backend'
                 '''
             }
-        }    
+        }  
+        stage('Terraform Apply ') {
+            steps {
+                sh '''
+                cd dev
+                terraform apply -var 'node1=frontend' -var 'node2=backend' -auto-approve
+                '''
+            }
+        }     
     }
 }
