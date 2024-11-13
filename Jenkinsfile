@@ -7,7 +7,10 @@ pipeline {
     stages {
         stage('Initialise terraform') {
             steps {
-                sh 'cd dev && pwd'
+                sh '''
+                cd dev
+                pwd
+                '''
             }
         }
     }
