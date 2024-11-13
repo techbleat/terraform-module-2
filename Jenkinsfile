@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                 cd dev
-                pwd
+                terraform init
                 '''
             }
         }
