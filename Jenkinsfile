@@ -13,5 +13,13 @@ pipeline {
                 '''
             }
         }
+        stage('Terraform Plan ') {
+            steps {
+                sh '''
+                cd dev
+                terraform plan -var 'node1=frontend' -var 'node2=backend'
+                '''
+            }
+        }    
     }
 }
