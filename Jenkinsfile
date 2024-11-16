@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh '''
                 cd dev
-                terraform plan -var 'node1=frontend' -var 'node2=backend'
+                terraform plan -var 'node1=nginx' -var 'node2=python-node'
                 '''
             }
         }  
