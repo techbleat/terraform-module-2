@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh '''
                 cd dev
-                terraform apply -var 'node1=frontend' -var 'node2=backend' -auto-approve
+                terraform apply -var 'node1=nginx' -var 'node2=python-node' -auto-approve
                 '''
             }
         }     
