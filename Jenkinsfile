@@ -40,7 +40,8 @@ pipeline {
                         sh """
                         env
                         cd dev
-                        ssh  ${NGINX_NODE} 'pwd'
+                        xx=echo `terraform output  | grep nginx  | awk -F\\" '{print \$2}'`
+                        ssh  ${xx} 'pwd'
                        
                         """
                         
