@@ -34,7 +34,8 @@ pipeline {
                 script {
                     sshagent (credentials : ['SSH-TO-TERRA-Nodes']) {
                         sh """
-                        ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-175-133-113.eu-west-2.compute.amazonaws.com 'pwd'
+                        nginx_node=`terraform output  | grep nginx  | awk -F\" '{print $2}'`
+                        ssh -o StrictHostKeyChecking=no ec2-user@$nginx_node 'pwd'
                         """
                         
                     }
