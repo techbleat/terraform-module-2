@@ -41,7 +41,7 @@ pipeline {
                         env
                         nginx_node=`terraform output  | grep nginx  | awk -F\\" '{print \$2}'`
                         echo \$nginx_node 
-                        ssh -o StrictHostKeyChecking=no ec2-user@${NGINX_NODE} 'pwd'  
+                        #ssh -o StrictHostKeyChecking=no ec2-user@${NGINX_NODE} 'pwd'  
                         """
                         
                     }
