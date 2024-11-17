@@ -40,7 +40,7 @@ pipeline {
                         sh """
                         env
                         cd dev
-                        ssh  ${NGINX_NODE} 'pwd'
+                        ssh  ec2-user@${NGINX_NODE} 'pwd'
                        
                         """
                         
