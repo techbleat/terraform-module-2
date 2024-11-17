@@ -35,6 +35,7 @@ pipeline {
                     sshagent (credentials : ['SSH-TO-TERRA-Nodes']) {
                         sh """
                         nginx_node=`terraform output  | grep nginx  | awk -F\\" '{print \$2}'`
+                        ssh -o StrictHostKeyChecking=no ec2-user@\$nginx_node 'pwd'
                         """
                         
                     }
