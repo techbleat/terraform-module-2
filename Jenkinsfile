@@ -32,14 +32,15 @@ pipeline {
         stage ('Manage Nginx') {
             environment {
                 NGINX_NODE = sh(script: "terraform output  |  grep nginx | cut -c 11-60",returnStdout: true).trim()
-                
+                NGINX_NODE = 'ec2-18-175-133-113.eu-west-2.compute.amazonaws.com'
             }
             steps {
                 script {
                     sshagent (credentials : ['SSH-TO-TERRA-Nodes']) {
                         sh """
                         env
-                        nginx_node=`terraform output  | grep nginx  | awk -F\\" '{print \$2}'` 
+                        nginx_node=`terraform output  | grep nginx  | awk -F\\" '{print \$2}'`
+                        echo \$nginx_node 
                         ssh -o StrictHostKeyChecking=no ec2-user@${NGINX_NODE} 'pwd'  
                         """
                         
