@@ -39,7 +39,7 @@ pipeline {
                     sshagent (credentials : ['SSH-TO-TERRA-Nodes']) {
                         sh """
                         env
-                        terraform output  | grep nginx  | awk -F\\" \'{print \$2}\'
+                        terraform output  | grep nginx  | awk -F \'{print \$2}\'
                        
                         """
                         
