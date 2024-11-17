@@ -31,8 +31,8 @@ pipeline {
         }
         stage ('Manage Nginx') {
             environment {
-                NGINX_NODE = sh(script: "cd dev ;terraform output  |  grep nginx | cut -c 10-59",returnStdout: true).trim()
-                 JNGINX_NODE = sh(script: "cd dev ;terraform output  |  grep nginx | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
+                NGINX_NODE1 = sh(script: "terraform output  |  grep nginx | cut -c 10-59",returnStdout: true).trim()
+                NGINX_NODE2 = sh(script: "terraform output  |  grep nginx | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
             }
             steps {
                 script {
@@ -40,7 +40,7 @@ pipeline {
                         sh """
                         env
                         cd dev
-                        ssh  ec2-user@${JNGINX_NODE} 'pwd'
+                        ssh  ec2-user@${NGINX_NODE1} 'pwd'
                        
                         """
                         
