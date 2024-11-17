@@ -32,7 +32,7 @@ pipeline {
         stage ('Manage Nginx') {
             environment {
                 NGINX_NODE = sh(script: "cd dev ;terraform output  |  grep nginx | cut -c 10-59",returnStdout: true).trim()
-                BNGINX_NODE = 'ec2-18-175-133-113.eu-west-2.compute.amazonaws.com'
+                 JNGINX_NODE = sh(script: "cd dev ;terraform output  |  grep nginx | awk -Fc  '{print \$2}',returnStdout: true).trim()
             }
             steps {
                 script {
