@@ -31,10 +31,7 @@ pipeline {
         }
         stage ('Manage Nginx') {
             environment {
-                NGINX_NODE = sh(
-                               script: "terraform output  | grep nginx  | awk -F\\" '{print \$2}'",
-                               returnStdout: true
-                            ).trim()
+                NGINX_NODE = sh(script: "terraform output  | grep nginx  | awk -F\\" '{print \$2}'",returnStdout: true).trim()
             }
             steps {
                 script {
