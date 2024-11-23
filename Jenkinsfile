@@ -22,8 +22,7 @@ pipeline {
         stage('Terraform Plan ') {
           when {
               anyOf {
-                  "${params.deploy_options}" == "ALL"
-                  "${params.deploy_options}" == "INFRA"
+                  branch "main"
               }
           }
             steps {
