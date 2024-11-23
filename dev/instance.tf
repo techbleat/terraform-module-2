@@ -26,7 +26,7 @@ resource "aws_security_group" "node_sg" {
 }
 
 resource "aws_security_group" "python_sg" {
-  name        = "week9_node_security"
+  name        = "python_node_security"
   vpc_id      = "vpc-0dec0ac0d693b26e7"
 
   tags = {
