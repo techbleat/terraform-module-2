@@ -11,7 +11,7 @@ pipeline {
         stage('Initialise terraform') {
             steps {
                 script {
-                    echo ${params.deploy_options}
+                    echo "${params.deploy_options}"
                 }
                 sh '''
                 cd dev
