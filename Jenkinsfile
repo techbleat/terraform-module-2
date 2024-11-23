@@ -20,11 +20,6 @@ pipeline {
             }
         }
         stage('Terraform Plan ') {
-          when {
-              anyOf {
-                  branch "main"
-              }
-          }
             steps {
                 sh '''
                 cd dev
@@ -61,5 +56,17 @@ pipeline {
                 }
             }
         }     
+    }
+    post {
+        success {
+            echo  "pipeline has succeeded"
+        }
+        failure  {
+            echo  "pipeline has succeeded"
+        }
+        always {
+            echo "always execute"
+        }
+        
     }
 }
