@@ -31,7 +31,8 @@ pipeline {
         }
         stage ('Manage Nginx') {
             environment {
-                NGINX_NODE2 = sh(script: "cd dev; terraform output  |  grep nginx | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
+                NGINX_NODE = sh(script: "cd dev; terraform output  |  grep nginx | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
+                PYTHON_NODE = sh(script: "cd dev; terraform output  |  grep python | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
             }
             steps {
                 script {
@@ -39,7 +40,8 @@ pipeline {
                         sh """
                         env
                         cd dev
-                        ssh  -o StrictHostKeyChecking=no ec2-user@${NGINX_NODE2} 'pwd'
+                        ssh  -o StrictHostKeyChecking=no ec2-user@${NGINX_NODE} 'sudo yum install nginx -y && sudo service nginx start'
+                        ssh  -o StrictHostKeyChecking=no ec2-user@${PYTHON_NODE} 'sudo yum install python3 -y'
                        
                         """
                         
