@@ -20,6 +20,12 @@ pipeline {
             }
         }
         stage('Terraform Plan ') {
+          when {
+              anyOf {
+                  "${params.deploy_options}" = "ALL"
+                  "${params.deploy_options}" = "INFRA"
+              }
+          }
             steps {
                 sh '''
                 cd dev
