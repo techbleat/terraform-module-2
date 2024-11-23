@@ -4,6 +4,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
         AWS_ACCESS_KEY_ID =  credentials ('AWS_ACCESS_KEY_ID')
     }
+    parameters {
+        choice (choices: "ALL\nINFRA\nAPPS", description: " this is to manage pipeline steps", name: "deploy_options")
+    }
     stages {
         stage('Initialise terraform') {
             steps {
