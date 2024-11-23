@@ -1,4 +1,4 @@
-resource "aws_security_group" "node_sg" {
+resource "aws_security_group" "nginx_sg" {
   name        = "week9_node_security"
   vpc_id      = "vpc-0dec0ac0d693b26e7"
 
@@ -57,7 +57,7 @@ resource "aws_instance" "node1" {
     instance_type = "t2.micro"
     key_name ="hello123"
 
-    security_groups =  [aws_security_group.python_sg.name]
+    security_groups =  [aws_security_group.nginx_sg.name]
 
     tags = {
         Name  = var.node1
@@ -70,7 +70,7 @@ resource "aws_instance" "node2" {
     instance_type = "t2.micro"
     key_name ="hello123"
 
-    security_groups =  [aws_security_group.node_sg.name]
+    security_groups =  [aws_security_group.python_sg.name]
 
     tags = {
         Name  = var.node2
