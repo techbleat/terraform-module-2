@@ -10,13 +10,13 @@ resource "aws_security_group" "node_sg" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks =  ["0.0.0.0/0"]
-  },
+  }
   ingress {
     from_port = 80
     to_port = 80
     protocol = "tcp"
     cidr_blocks =  ["0.0.0.0/0"]
-  },
+  }
   egress  {
     from_port = 0
     to_port = 0
@@ -37,13 +37,13 @@ resource "aws_security_group" "python_sg" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks =  ["0.0.0.0/0"]
-  },
+  }
   ingress {
     from_port = 65432
     to_port = 65432
     protocol = "tcp"
     cidr_blocks =  ["0.0.0.0/0"]
-  },
+  }
   egress  {
     from_port = 0
     to_port = 0
