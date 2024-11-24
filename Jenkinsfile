@@ -5,13 +5,13 @@ pipeline {
         AWS_ACCESS_KEY_ID =  credentials ('AWS_ACCESS_KEY_ID')
     }
     parameters {
-        choice (choices: "ALL\nINFRA\nAPPS", description: " this is to manage pipeline steps", name: "deploy_options")
+        choice (choices: "ALL\nINFRA\nAPPS", description: " this is to manage pipeline steps", name: "DEPLOY_OPTIONS")
     }
     stages {
         stage('Initialise terraform') {
             steps {
                 script {
-                    echo "${params.deploy_options}"
+                    echo "${params.DEPLOY_OPTIONS}"
                 }
                 sh '''
                 cd dev
@@ -36,6 +36,10 @@ pipeline {
             }
         }
         stage ('Manage Nginx') {
+
+            when {
+                expression  { params.DEPLOY_OPTIONS == 'APPS' }
+            }
             environment {
                 NGINX_NODE = sh(script: "cd dev; terraform output  |  grep nginx | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
                 PYTHON_NODE = sh(script: "cd dev; terraform output  |  grep python | awk -F\\=  '{print \$2}'",returnStdout: true).trim()
