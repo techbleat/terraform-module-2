@@ -20,6 +20,9 @@ pipeline {
             }
         }
         stage('Terraform Plan ') {
+            when {
+                expression  { params.DEPLOY_OPTIONS == 'INFRA' || params.DEPLOY_OPTIONS == 'ALL' }
+            }
             steps {
                 sh '''
                 cd dev
@@ -28,6 +31,9 @@ pipeline {
             }
         }  
         stage('Terraform Apply ') {
+            when {
+                expression  { params.DEPLOY_OPTIONS == 'INFRA' || params.DEPLOY_OPTIONS == 'ALL' }
+            }
             steps {
                 sh '''
                 cd dev
